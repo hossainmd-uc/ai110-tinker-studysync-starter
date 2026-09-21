@@ -11,5 +11,9 @@ def test_session_rating_boundary_90_is_great():
     assert session_rating(90) == "Great"
 
 
+def test_session_rating_boundary_60_is_great():
+    assert session_rating(60) == "Meh"
+
+
 # TODO: add at least one more test, e.g. a boundary case for "Skip" (a score
 # of 59) or the exact boundary for "Good" (a score of 80).

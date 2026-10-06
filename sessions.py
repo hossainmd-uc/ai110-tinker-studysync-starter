@@ -83,9 +83,14 @@ def render_session_log_tab():
     if st.button("Add session"):
         # TODO (Part 2): reject an empty/whitespace-only subject and a
         # duration that isn't > 0. Show st.error(...) instead of appending.
-        st.session_state.mini_sessions.append(
-            {"subject": subject, "duration": duration}
-        )
+        if subject.strip() == "":
+            st.error("Please enter a valid subject!")
+        elif duration <= 0:
+            st.error("Please enter a valid duration > 0 minutes!")
+        else:
+            st.session_state.mini_sessions.append(
+                {"subject": subject, "duration": duration}
+            )
 
     st.write(st.session_state.mini_sessions)
 

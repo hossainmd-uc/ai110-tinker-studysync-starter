@@ -8,6 +8,7 @@ detected yet.
 """
 
 from datetime import date, timedelta
+from dataclasses import dataclass
 
 FREQUENCY_DAYS = {"daily": 1, "weekly": 7}
 
@@ -25,6 +26,12 @@ class PlainSession:
 # TODO (Part 3): from dataclasses import dataclass, then define SessionDC as
 # a @dataclass with the same three fields as PlainSession: subject, minutes,
 # priority="medium".
+@dataclass
+class SessionDC:
+
+    subject: str
+    minutes: int
+    priority: str = "medium"
 
 
 def next_occurrence(last_date: date, frequency: str) -> date:
@@ -116,6 +123,8 @@ if __name__ == "__main__":
     print(plain)
     # TODO (Part 3): create a SessionDC with the same values and print it too --
     # compare the two __repr__ outputs and the amount of code each required.
+    dcSession = SessionDC("Study group: Calc II", 45, priority="high")
+    print(dcSession)
 
     print(next_occurrence(date(2026, 1, 1), "daily"))
     print(next_occurrence(date(2026, 1, 1), "weekly"))

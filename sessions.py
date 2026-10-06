@@ -41,7 +41,8 @@ def next_occurrence(last_date: date, frequency: str) -> date:
     """
     # TODO (Part 4): look up the day count for `frequency` in FREQUENCY_DAYS
     # and add that many days to last_date using timedelta.
-    raise NotImplementedError
+    day_count = FREQUENCY_DAYS[frequency]
+    return last_date + timedelta(days=day_count)
 
 
 def find_conflicts(sessions: list) -> list:
@@ -53,7 +54,19 @@ def find_conflicts(sessions: list) -> list:
     """
     # TODO (Part 4): implement without crashing on empty input. A simple
     # nested loop comparing each pair once is fine.
-    raise NotImplementedError
+    overlap = []
+
+    for i in range(len(sessions)):
+        subject = sessions[i]
+
+        for j in range(i + 1, len(sessions)):
+
+            sub_subject = sessions[j]
+
+            if subject["slot"] == sub_subject["slot"]:
+                overlap.append((subject, sub_subject))
+
+    return overlap
 
 
 def render_session_log_tab():
